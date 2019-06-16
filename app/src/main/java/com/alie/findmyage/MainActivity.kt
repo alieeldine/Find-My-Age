@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.Exception
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -21,9 +22,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun findAgeEvent(view:View) {
-        val yearOfBirth:Int = yearOfBirthTxt.text.toString().toInt()
-        val currentYear = Calendar.getInstance().get(Calendar.YEAR)
-        val myAge = currentYear - yearOfBirth
-        showAgeTxt.text = "You age is $myAge years"
+        try {
+            val yearOfBirth: Int = yearOfBirthTxt.text.toString().toInt()
+            val currentYear = Calendar.getInstance().get(Calendar.YEAR)
+            val myAge = currentYear - yearOfBirth
+            showAgeTxt.text = "You age is $myAge years"
+        } catch (ex:Exception) {
+            showAgeTxt.text = "Invalid Value"
+        }
     }
 }
